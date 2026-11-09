@@ -1,0 +1,11 @@
+/* Vaishnava Texts: own artwork, loaded after app.css.
+   Book cards get a drawn cover (gradients + paper grain, no photo); verses and purports use Gaura Times. */
+@font-face { font-family: Diakritics; src: url(../fonts/GauraTimes.ttf); font-display: swap; }
+@font-face { font-family: Diakritics_i; src: url(../fonts/GauraTimes-Italic.ttf); font-display: swap; }
+@font-face { font-family: Diakritics; font-style: italic; src: url(../fonts/GauraTimes-Italic.ttf); font-display: swap; }
+.bk, .canto {
+  background: linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,0) 40%, rgba(86,62,6,.15)), url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%20x='0'%20y='0'%20width='100%'%20height='100%'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20values='0%200%200%200%200.32%20%200%200%200%200%200.22%20%200%200%200%200%200.1%20%200%200%200%200.6%20-0.14'/%3E%3C/filter%3E%3Crect%20width='100%'%20height='100%'%20filter='url%28%23n%29'/%3E%3C/svg%3E"), linear-gradient(110deg, #ecdfc6, #d9c6a1 58%, #cdb68d);
+}
+body.night .bk, body.night .canto {
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0) 42%, rgba(0,0,0,.28)), url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='180'%20height='180'%3E%3Cfilter%20id='n'%20x='0'%20y='0'%20width='100%'%20height='100%'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='.85'%20numOctaves='2'%20stitchTiles='stitch'/%3E%3CfeColorMatrix%20values='0%200%200%200%200.8%20%200%200%200%200%200.85%20%200%200%200%200%200.95%20%200%200%200%200.5%20-0.2'/%3E%3C/filter%3E%3Crect%20width='100%'%20height='100%'%20filter='url%28%23n%29'/%3E%3C/svg%3E"), linear-gradient(110deg, #2e3e4f, #243241 58%, #1b2733);
+}

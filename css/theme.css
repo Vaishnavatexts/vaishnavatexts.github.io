@@ -1,0 +1,142 @@
+/* Vaishnava Texts: house theme "Tulasi" (day) and "Midnight" (night). Loaded after app.css and own-art.css.
+   Same layout as before; this file only sets colours, type and surfaces. */
+@font-face { font-family: 'Reader Display'; src: url(../fonts/ReaderDisplay-Bold.ttf); font-weight: 700; font-display: swap; }
+:root {
+  --hdr: #22423a; --hdr-grad: linear-gradient(180deg, #25473e, #1e3b34); --hdr-text: #f4ecd8; --home: #f2ede2; --volumes: #e5dfcf; --book-title: #1f3c35;
+  --text-bg: #fbf8f1; --transl: #1d5546; --purport: #2a2722; --skt: #39405c; --translit: #8a5a1c; --wbw: #39405c; --link: #1c6b58;
+  --hl2: #f1e3bd; --hl3: #d5e6c8; --hl4: #f1dce6; --srch: #cfe2f0; --srch-t: #111; --sel: #8fbfad;
+  --tab-bar: #22423a; --tab-g1: #2d5249; --tab-g2: #2d5249; --tab-ico: #cdd9cf; --tab-on: #1d5546;
+  --app-bg: #f2ede2; --card: #fffdf8; --card-b: #e2dbcb; --card-p: #f5f0e5; --t1: #1d211f; --t2: #6a6f69;
+  --progress: #c18b2f; --strip: #d9b467; --row-p: #e6e3cc; --folder-p: #e8dfc6; --folder-a: #c9b993; --div: #e5dccb;
+  --chip-b: #1c6b58; --chip-bg: #e6eee6; --date: #8a8b84; --ncomment: #22405c; --nquote: #463a1b; --ntags: #b06e2a; --qstripe: rgba(28,107,88,.6);
+  --menu-bg: #fffdf8; --menu-t: #1d211f; --sheet-bg: #f7f2e8; --sheet-t: #111; --grip: #a8a291; --dlg-bg: #fffdf8; --accent: #1c6b58;
+  --num: #22423a; --cmp-bar: #1e3b34; --shadow: 0 10px 30px rgba(20,40,34,.2);
+  --ui: Roboto, 'Noto Serif Devanagari', 'Tiro Devanagari Hindi', system-ui, sans-serif;
+  --narrow: 'Reader Display', Diakritics, Georgia, 'Tiro Devanagari Hindi', 'Noto Serif Devanagari', serif;
+  --gold: #c18b2f; --line: rgba(31,60,53,.14); --hover: rgba(28,107,88,.07); --wash: rgba(28,107,88,.1);
+}
+body.night {
+  --hdr: #111a1d; --hdr-grad: linear-gradient(180deg, #131d20, #0e1618); --hdr-text: #e9dfc6; --home: #121a1c; --volumes: #192326; --book-title: #e2c47e;
+  --text-bg: #0c1214; --transl: #d8b35e; --purport: #c8c1b1; --skt: #9db2c8; --translit: #c79a55; --wbw: #9db2c8; --link: #82c5ae;
+  --hl2: #3a3216; --hl3: #1e3328; --hl4: #3a1f2c; --srch: #1b4560; --srch-t: #eee; --sel: #2c5a4b;
+  --tab-bar: #0e1517; --tab-g1: #172124; --tab-g2: #172124; --tab-ico: #85928b; --tab-on: #e2c47e;
+  --app-bg: #0f1517; --card: #172124; --card-b: #253135; --card-p: #1e292c; --t1: #ebe7dd; --t2: #a6aba5;
+  --progress: #d8b35e; --strip: #9c7f45; --row-p: #1e2f2a; --folder-p: #21342f; --folder-a: #1b2d28; --div: #213029;
+  --chip-b: #82c5ae; --chip-bg: #182925; --date: #8a8b84; --ncomment: #b3c5d5; --nquote: #cabb96; --ntags: #c79a55; --qstripe: rgba(130,197,174,.55);
+  --menu-bg: #152023; --menu-t: #ddd6c5; --sheet-bg: #10181b; --sheet-t: #c8d2ce; --grip: #5c6e68; --dlg-bg: #152023; --accent: #e2c47e; --num: #c79a55;
+  --cmp-bar: #0e1618; --shadow: 0 10px 30px rgba(0,0,0,.6);
+  --gold: #d8b35e; --line: rgba(226,196,126,.13); --hover: rgba(130,197,174,.07); --wash: rgba(130,197,174,.12);
+}
+
+/* ---- tab rail: flat tabs, a gold bar marks the open one ---- */
+#rail { gap: 4px; }
+#rail .tab { margin: 0 7px; border: 0; border-radius: 12px; background: transparent; color: var(--tab-ico); position: relative; }
+#rail .tab:hover { background: rgba(255,255,255,.07); filter: none; }
+#rail .tab.on { background: var(--home); color: var(--tab-on); margin-right: 0; border-radius: 12px 0 0 12px; }
+#rail .tab.on::before { content: ''; position: absolute; left: 0; top: 14px; bottom: 14px; width: 3px; border-radius: 2px; background: var(--gold); }
+@media (max-width: 899px) {
+  html:not(.lay-d) #rail .tab { margin: 6px 4px; border: 0; border-radius: 12px; background: transparent; }
+  html:not(.lay-d) #rail .tab.on { background: rgba(255,255,255,.1); color: var(--gold); margin: 6px 4px; border-radius: 12px; }
+  html:not(.lay-d) #rail .tab.on::before { left: 22px; right: 22px; top: auto; bottom: 3px; width: auto; height: 3px; }
+}
+html.lay-m #rail .tab { margin: 6px 4px; border: 0; border-radius: 12px; background: transparent; }
+html.lay-m #rail .tab.on { background: rgba(255,255,255,.1); color: var(--gold); margin: 6px 4px; border-radius: 12px; }
+html.lay-m #rail .tab.on::before { left: 22px; right: 22px; top: auto; bottom: 3px; width: auto; height: 3px; }
+
+/* ---- title bars ---- */
+.hdr { box-shadow: inset 0 -1px 0 rgba(0,0,0,.18); }
+.hdr-title { color: var(--hdr-text); font-family: var(--narrow); font-weight: 700; letter-spacing: .2px; }
+.hdr-dd { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); color: var(--hdr-text); font: 600 16px var(--ui); border-radius: 18px; padding: 0 4px 0 10px; }
+body.night .hdr-dd { border-color: rgba(255,255,255,.1); }
+.hdr-dd .flag.txt { background: #e9e1cc; color: #1f3c35; }
+.hdr-logo:hover, .hdr-btn:hover { background: rgba(255,255,255,.1); }
+/* the mantra line: a quiet gold subtitle instead of a coloured strip */
+.strip { height: 18px; line-height: 18px; background: var(--hdr); color: var(--strip); font: italic 11px var(--narrow); font-weight: 400; letter-spacing: .6px; text-transform: none; opacity: .95; border-bottom: 1px solid rgba(217,180,103,.25); }
+body.night .strip { background: var(--hdr); color: var(--strip); }
+
+/* ---- sub tabs (Books / Reading / My books, book screen tabs) ---- */
+.subtabs { box-shadow: 0 1px 0 var(--line); }
+.st { color: var(--t2); opacity: 1; letter-spacing: .4px; font-size: 12.5px; }
+.st.on { color: var(--transl); border-bottom-color: var(--gold); }
+body.night .st { color: var(--t2); } body.night .st.on { color: var(--transl); border-bottom-color: var(--gold); }
+body.night .btabs { background: var(--home); } body.night .btab { color: var(--t2); }
+.btab.on, body.night .btab.on { border-bottom-color: var(--gold); }
+
+/* ---- book cards: cloth-bound covers with a gold rule ---- */
+.bk, .canto {
+  background: linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,0) 45%, rgba(20,40,34,.12)), linear-gradient(115deg, #e7ede2, #d3dfd0 55%, #c3d3c1);
+  box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 3px 10px rgba(20,40,34,.18); color: var(--book-title); }
+.bk { border-left: 5px solid #2d5249; }
+.bk::after { content: ''; position: absolute; left: 12px; right: 12px; bottom: 9px; height: 1px; background: linear-gradient(90deg, transparent, rgba(193,139,47,.65), transparent); }
+body.night .bk, body.night .canto { background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0) 45%, rgba(0,0,0,.3)), linear-gradient(115deg, #1f2f30, #182628 55%, #132022); box-shadow: 0 3px 12px rgba(0,0,0,.5); }
+body.night .bk { border-left-color: #a8873f; }
+.bk-title, .vol-title, .canto-title, .rc-title, .song-title, .dr-title { letter-spacing: .1px; }
+.canto-mark { color: var(--book-title); }
+
+/* ---- buttons, cards, inputs ---- */
+.btn { background: var(--accent); color: var(--text-bg); border-radius: 22px; box-shadow: 0 2px 8px rgba(20,40,34,.2); }
+body.night .btn { background: #2c5a4b; color: #eef3ee; }
+.help-row { border-radius: 12px; } body.night .help-row { color: var(--t2); }
+.rcard, .rswitch { background: var(--card); border: 1px solid var(--card-b); box-shadow: 0 1px 3px rgba(20,40,34,.08); }
+.rc-pct { color: var(--transl); }
+.rc-bar { background: var(--wash); border-radius: 4px; } .rc-bar i { background: var(--gold); border-radius: 4px; }
+.file-add { border-color: var(--line); border-width: 1.5px; color: var(--transl); }
+.ncard { background: var(--card); box-shadow: 0 1px 3px rgba(20,40,34,.1); border: 1px solid var(--card-b); }
+.ncard:hover { background: var(--card-p); } body.night .ncard:hover { background: var(--card-p); }
+.nc-subject, .tx-num, .tx-seq { color: var(--t2); }
+body.night .folder { color: var(--t1); }
+.dict-in, .ne-subject, .ne-text, .ne-tagin, .dlg-input, .sd-in { border: 1px solid var(--card-b); background: var(--card); color: var(--t1); border-radius: 10px; }
+.dict-in:focus, .ne-subject:focus, .ne-text:focus, .ne-tagin:focus, .dlg-input:focus, .sd-in:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--wash); }
+body.night .dict-in, body.night .ne-subject, body.night .ne-text, body.night .ne-tagin, body.night .dlg-input, body.night .sd-in { background: #0c1214; color: var(--t1); border-color: var(--card-b); }
+.pic-sec { background: var(--hdr); color: var(--hdr-text); border-radius: 8px; margin-left: 8px; margin-right: 8px; }
+.txrow:hover, .sr-row:hover, .hs-row:hover { background: var(--hover); }
+input.switch, .sw { background: #c3c7c0; } body.night input.switch, body.night .sw { background: #3a4744; }
+.num-b:hover, .dlg-btn:hover { background: var(--wash); }
+
+/* ---- reader ---- */
+.rd-search { border-bottom: 2px solid var(--line); }
+.rd-scroll { scrollbar-color: var(--line) transparent; }
+.wbwTable td { border-bottom: 1px solid var(--line); }
+.verseTransl2, #verseTransl2 { letter-spacing: .05px; }
+
+/* ---- menus, sheets, dialogs, toasts ---- */
+.dlg { border-radius: 16px; } body.night .dlg { color: var(--t1); }
+.dlg-btn { text-transform: none; letter-spacing: .2px; border-radius: 18px; padding: 9px 16px; }
+.toast { background: rgba(20,34,30,.94); color: #eef3ee; border-radius: 22px; }
+body.night .pref { color: var(--t1); }
+.pref-cat { color: var(--accent); text-transform: none; letter-spacing: .2px; font: 700 15px var(--narrow); }
+#dropzone { background: rgba(31,60,53,.6); }
+body.night ::-webkit-scrollbar-thumb { background: #253135; }
+.rc-pct { font: 700 18px var(--ui); }
+
+/* ---- loading: page-turn loader, skeleton rows, chapter cards rising in ---- */
+.gb-loader { display: grid; place-items: center; animation: gbl-in .3s ease .14s both; }
+.gbl { width: 66px; height: 58px; overflow: visible; }
+.gbl-pages { fill: var(--accent); opacity: .9; }
+.gbl-turn { fill: var(--gold); transform-box: view-box; transform-origin: 32px 50%; animation: gbl-turn 1.5s cubic-bezier(.5,0,.3,1) infinite; }
+.gbl-sun { fill: var(--gold); stroke: var(--gold); stroke-width: 2.2; stroke-linecap: round; transform-box: view-box; transform-origin: 32px 12.5px; animation: gbl-sun 1.5s ease-in-out infinite; }
+.gbl-sun path { fill: none; }
+@keyframes gbl-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes gbl-turn { 0%, 12% { transform: scaleX(1); opacity: 0; } 18% { opacity: .95; } 62% { transform: scaleX(-1); opacity: .95; } 74%, 100% { transform: scaleX(-1); opacity: 0; } }
+@keyframes gbl-sun { 0%, 100% { transform: scale(.88); opacity: .7; } 50% { transform: scale(1.06); opacity: 1; } }
+.rd-loading { animation: gbl-in .2s ease .12s both; }
+.gb-loader-list { position: absolute; left: 0; right: 0; top: 38%; pointer-events: none; }
+.sk-list { animation: gbl-in .3s ease .12s both; }
+.sk-row { padding: 12px 14px 13px; border-bottom: 1px solid var(--div); }
+.sk-row i { display: block; height: 10px; border-radius: 5px; margin: 6px 0; background: linear-gradient(90deg, var(--line) 25%, var(--wash) 37%, var(--line) 63%); background-size: 400% 100%; animation: sk-shine 1.3s ease infinite; }
+.sk-row .sk-a { width: 64px; height: 9px; } .sk-row .sk-b { width: 92%; } .sk-row .sk-c { width: 58%; }
+.sk-row:nth-child(3n+2) .sk-c { width: 74%; } .sk-row:nth-child(3n) .sk-b { width: 84%; }
+@keyframes sk-shine { from { background-position: 100% 50%; } to { background-position: 0 50%; } }
+.chgrid .chcard, .song-row { animation: ch-rise .34s cubic-bezier(.2,.7,.3,1) both; }
+.chgrid .chcard:nth-child(2) { animation-delay: .02s; } .chgrid .chcard:nth-child(3) { animation-delay: .04s; } .chgrid .chcard:nth-child(4) { animation-delay: .06s; }
+.chgrid .chcard:nth-child(5) { animation-delay: .08s; } .chgrid .chcard:nth-child(6) { animation-delay: .1s; } .chgrid .chcard:nth-child(7) { animation-delay: .12s; }
+.chgrid .chcard:nth-child(8) { animation-delay: .14s; } .chgrid .chcard:nth-child(n+9) { animation-delay: .16s; }
+.song-row:nth-child(2) { animation-delay: .02s; } .song-row:nth-child(3) { animation-delay: .04s; } .song-row:nth-child(4) { animation-delay: .06s; }
+.song-row:nth-child(5) { animation-delay: .08s; } .song-row:nth-child(6) { animation-delay: .1s; } .song-row:nth-child(n+7) { animation-delay: .12s; }
+.txrow { animation: gbl-in .22s ease both; }
+@keyframes ch-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .gbl-turn { animation: none; opacity: 0; } .gbl-sun { animation: gbl-sun 2.4s ease-in-out infinite; }
+  .chgrid .chcard, .song-row, .txrow, .sk-row i { animation: none; }
+}
+.sk-wrap { position: relative; }

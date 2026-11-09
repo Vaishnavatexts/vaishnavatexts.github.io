@@ -1,0 +1,56 @@
+/* Pentabase look: sizes. The Pentabase app is a desktop app (14px text, 32px rows). Gitabase is read on phones too, and the old look
+   used 15.5px settings / menu text, 16px section titles and 44px menu rows, so the Pentabase look read as too small.
+   Colours, shapes, shadows and motion stay from css/penta.css; only the sizes below change (never smaller than the old look). */
+
+/* settings */
+html[data-accent=penta] .pref-t { font-size: 15.5px; line-height: 22px; }
+html[data-accent=penta] .pref-s { font-size: 12.5px; line-height: 1.4; }
+html[data-accent=penta] .pref-v { font-size: 13.5px; }
+html[data-accent=penta] .pref-cat { font-size: 15px; padding-top: 20px; }
+html[data-accent=penta] .pref { padding-top: 11px; padding-bottom: 11px; }
+html[data-accent=penta].desk .settingspage .pref-t { font-size: 15px; }
+html[data-accent=penta].desk .settingspage .pref-s { font-size: 12.5px; }
+html[data-accent=penta].desk .settingspage .pref-cat { font-size: 15px; padding: 20px 4px 6px; }
+html[data-accent=penta].desk .settingspage .pref { padding: 10px 4px; }
+html[data-accent=penta].desk .dm-nav-b { font-size: 15px; padding-top: 8px; padding-bottom: 8px; }
+
+/* menus */
+html[data-accent=penta] .popmenu { min-width: 230px; padding: 6px 0; }
+html[data-accent=penta] .pm-item { min-height: 40px; padding: 0 10px; gap: 12px; font-size: 15.5px; line-height: 22px; }
+html[data-accent=penta] .pm-ico, html[data-accent=penta] .pm-png { width: 22px; height: 22px; }
+html[data-accent=penta] .pm-head { font-size: 12.5px; }
+@media (pointer: coarse) { html[data-accent=penta] .pm-item { min-height: 44px; } }
+
+/* title bars, tabs, breadcrumbs, chips */
+html[data-accent=penta] .hdr-title, html[data-accent=penta] .home-hdr .hdr-title { font-size: 18px; }
+html[data-accent=penta] .t2a { font-size: 13px; }
+html[data-accent=penta] .t2b { font-size: 16px; }
+html[data-accent=penta] .hdr.big .t2b, html[data-accent=penta] .hdr .t2a:only-child { font-size: 18px; }
+html[data-accent=penta] .st, html[data-accent=penta] .btab { font-size: 14.5px; }
+html[data-accent=penta] .st { height: 34px; }
+html[data-accent=penta] .seg-b { height: 34px; font-size: 14px; }
+html[data-accent=penta] .crumbs { font-size: 14px; }
+html[data-accent=penta] .chip2 { height: 32px; font-size: 14.5px; padding: 0 14px; }
+html[data-accent=penta] .tab-l { font-size: 12px; }
+html[data-accent=penta] .strip { font-size: 12px; }
+
+/* dialogs, sheets, buttons, inputs */
+html[data-accent=penta] .dlg-title { font-size: 17px; }
+html[data-accent=penta] .dlg-btn { font-size: 15px; padding: 8px 14px; }
+html[data-accent=penta] .btn { font-size: 15px; min-height: 40px; }
+html[data-accent=penta] .sheet-title { font-size: 16px; }
+html[data-accent=penta] .rp-h, html[data-accent=penta] .s-h, html[data-accent=penta] .vo-ph, html[data-accent=penta] .gv-l { font-size: 13px; }
+html[data-accent=penta] .rp-check { font-size: 15px; }
+html[data-accent=penta] .toast { font-size: 15px; }
+html[data-accent=penta] :is(.dict-in, .ne-subject, .ne-text, .ne-tagin, .dlg-input, .sd-in, .s-in) { font-size: 15.5px; }
+
+/* shelf and lists */
+html[data-accent=penta] .bk-title, html[data-accent=penta] .vol-title, html[data-accent=penta] .song-title, html[data-accent=penta] .rc-title { font-size: 18px; }
+html[data-accent=penta] .bk-author, html[data-accent=penta] .vol-author { font-size: 13px; }
+html[data-accent=penta] .canto-title { font-size: 15.5px; }
+html[data-accent=penta].desk .canto-title { font-size: 14px; }
+html[data-accent=penta] .canto-sub { font-size: 12px; }
+html[data-accent=penta] .folder-name { font-size: 16px; }
+html[data-accent=penta] .tx-num { font-size: 13px; }
+html[data-accent=penta] .tx-prev { font-size: 15.5px; }
+html[data-accent=penta] .vlabel { font-size: 13px; }

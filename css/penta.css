@@ -1,0 +1,259 @@
+/* Vaishnava Texts: theme "Pentabase" (Settings > Accent). Day and Night follow the app's own switch.
+   Colours, type, shapes, shadows and motion are taken from the Pentabase app (its own stylesheet and screens), not guessed:
+     colours   #f7f7f7 / #fff / #2e2e2e + blue #207dff (day);  #212121 / #242629 / #e1e1e1 + cyan #61c6fa (night)
+     shapes    6px controls and dialogs, 4px menu rows, 8px cards, pill chips; rows 32px; text 14px Inter
+     shadows   card = 1px ring + 2px drop; menu / dialog = 7px 22px drop with two hairlines
+     motion    150ms cubic-bezier(.4,0,.2,1) for every hover, 300ms fade-in / slide-up (8px) for things that appear
+   Same layout as every other accent; verses and purports stay in Gaura Times. Source for css/penta.css (see tools in the workbench). */
+@font-face { font-family: Inter; src: url(../fonts/Inter-Regular.woff2) format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(../fonts/Inter-Medium.woff2) format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: Inter; src: url(../fonts/Inter-SemiBold.woff2) format('woff2'); font-weight: 600; font-display: swap; }
+@font-face { font-family: Inter; src: url(../fonts/Inter-Bold.woff2) format('woff2'); font-weight: 700; font-display: swap; }
+
+/* ================= tokens ================= */
+html[data-accent=penta] {
+  --p-ease: cubic-bezier(.4, 0, .2, 1);
+  --p-ring: rgba(0,0,0,.08); --p-ring2: rgba(0,0,0,.04); --p-mid: rgba(0,0,0,.13); --p-scrim: rgba(0,0,0,.32);
+  --p-card-sh: rgb(15 15 15 / 10%) 0 0 0 1px, rgb(15 15 15 / 10%) 0 2px 4px;
+  --p-float-sh: 0 0 6px rgba(0,0,0,.08);
+  --p-on: #fff;
+  --hdr: #f7f7f7; --hdr-grad: #f7f7f7; --hdr-text: #2e2e2e; --home: #f7f7f7; --volumes: #eeeded; --book-title: #2e2e2e;
+  --text-bg: #fff; --transl: #2e2e2e; --purport: #2e2e2e; --skt: #2e2e2e; --translit: #915e42; --wbw: #2e2e2e; --link: #207dff;
+  --hl2: #faf5c4; --hl3: #cff5db; --hl4: #fce3f5; --srch: #dbeafe; --srch-t: #2e2e2e; --sel: rgba(75,155,230,.3);
+  --tab-bar: #f7f7f7; --tab-g1: #f7f7f7; --tab-g2: #f7f7f7; --tab-ico: #77777a; --tab-on: #207dff;
+  --app-bg: #f7f7f7; --card: #fff; --card-b: rgba(15,15,15,.1); --card-p: #f1f1f1; --t1: #2e2e2e; --t2: #6e6e6e;
+  --progress: #207dff; --strip: #8a8a8a; --row-p: rgba(0,0,0,.06); --folder-p: rgba(0,0,0,.08); --folder-a: rgba(0,0,0,.05); --div: rgba(0,0,0,.08);
+  --chip-b: #207dff; --chip-bg: rgba(32,125,255,.1); --date: #8c8c8c; --ncomment: #2e2e2e; --nquote: #4a4a4a; --ntags: #207dff; --qstripe: rgba(32,125,255,.7);
+  --menu-bg: #f6f6f6; --menu-t: #2e2e2e; --sheet-bg: #f7f7f7; --sheet-t: #2e2e2e; --grip: rgba(0,0,0,.22); --dlg-bg: #f7f7f7; --accent: #207dff;
+  --num: #207dff; --cmp-bar: #2e2e2e;
+  --shadow: 0 7px 22px rgba(0,0,0,.25), 0 0 1.5px rgba(0,0,0,.3), 0 0 1px rgba(0,0,0,.4);
+  --ui: Inter, Roboto, 'Noto Serif Devanagari', 'Tiro Devanagari Hindi', system-ui, sans-serif;
+  --narrow: Inter, Roboto, 'Noto Serif Devanagari', 'Tiro Devanagari Hindi', system-ui, sans-serif;
+  --gold: #207dff; --line: rgba(0,0,0,.08); --hover: rgba(0,0,0,.06); --wash: rgba(0,0,0,.07);
+}
+html[data-accent=penta] body.night {
+  --p-ring: rgba(255,255,255,.08); --p-ring2: rgba(255,255,255,.06); --p-mid: rgba(255,255,255,.12); --p-scrim: rgba(0,0,0,.64);
+  --p-card-sh: rgb(15 15 15 / 20%) 0 0 0 1px, rgb(15 15 15 / 20%) 0 2px 4px;
+  --p-float-sh: 0 0 0 1px rgba(0,0,0,.2);
+  --p-on: #242629;
+  --hdr: #212121; --hdr-grad: #212121; --hdr-text: #e1e1e1; --home: #212121; --volumes: #191919; --book-title: #e1e1e1;
+  --text-bg: #242629; --transl: #e1e1e1; --purport: #e1e1e1; --skt: #e1e1e1; --translit: #d9a185; --wbw: #e1e1e1; --link: #61c6fa;
+  --hl2: rgba(234,179,8,.4); --hl3: rgba(34,197,94,.4); --hl4: rgba(234,71,152,.4); --srch: rgba(59,130,166,.5); --srch-t: #f1f1f1; --sel: rgba(35,131,226,.3);
+  --tab-bar: #212121; --tab-g1: #212121; --tab-g2: #212121; --tab-ico: #9a9a9d; --tab-on: #61c6fa;
+  --app-bg: #212121; --card: #2a2c30; --card-b: rgba(255,255,255,.08); --card-p: #33363a; --t1: #e1e1e1; --t2: #9d9da0;
+  --progress: #61c6fa; --strip: #7d7d80; --row-p: rgba(255,255,255,.08); --folder-p: rgba(255,255,255,.1); --folder-a: rgba(255,255,255,.06); --div: rgba(255,255,255,.08);
+  --chip-b: #61c6fa; --chip-bg: rgba(97,198,250,.14); --date: #8c8c8f; --ncomment: #e1e1e1; --nquote: #c9c9c9; --ntags: #61c6fa; --qstripe: rgba(97,198,250,.7);
+  --menu-bg: #3d4046; --menu-t: #e1e1e1; --sheet-bg: #26282b; --sheet-t: #e1e1e1; --grip: rgba(255,255,255,.22); --dlg-bg: #26282b; --accent: #61c6fa;
+  --num: #61c6fa; --cmp-bar: #3d4046;
+  --shadow: 0 0 0 1px rgba(15,15,15,.1), 0 3px 6px rgba(15,15,15,.2), 0 9px 24px rgba(15,15,15,.4);
+  --gold: #61c6fa; --line: rgba(255,255,255,.08); --hover: rgba(255,255,255,.06); --wash: rgba(255,255,255,.08);
+}
+html[data-accent=penta] body { font-family: var(--ui); }
+html[data-accent=penta] ::selection { background: rgba(75,155,230,.3); }
+html[data-accent=penta] body.night ::selection { background: rgba(35,131,226,.3); }
+
+/* ================= motion: one curve, one speed ================= */
+@keyframes p-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes p-slide-up { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+html[data-accent=penta] :is(.hdr-btn, .hdr-logo, .tab, .chip2, .seg-b, .cr, .nb-b, .nb-main, .btn, .s-goto, .s-ref, .s-recent, .rp-more, .rp-sb, .adot, .vo-b, .side-tog, .folder, .bk, .canto, .vol, .chcard, .song-row, .txrow, .cont-card, .pm-item, .dlg-btn, .wchip, .vt, .st, .btab, .ncard, .sr-row, .hs-row, .pref, .rail-side) {
+  transition: background-color .15s var(--p-ease), color .15s var(--p-ease), border-color .15s var(--p-ease), box-shadow .15s var(--p-ease), opacity .15s var(--p-ease), transform .15s var(--p-ease); }
+/* no press-squash, no lifting hovers: Pentabase only changes colour */
+html[data-accent=penta] :is(.hdr-btn, .hdr-logo, .chip2, .seg-b, .cr, .nb-b, .btn, .rp-sb, .adot, .vo-b, .side-tog, .dlg-btn, .wchip, .tab, .bk, .canto, .vol, .chcard, .song-row, .cont-card, .folder, .s-goto, .s-ref, .rp-more, .nb-main):active { transform: none; }
+html[data-accent=penta] :is(.canto, .bk, .song-row):hover { filter: none; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html[data-accent=penta] .page.in:not(.home), html[data-accent=penta].desk .page.in:not(.home):not(.dm-page) { animation: p-slide-up .3s ease-out; }
+  html[data-accent=penta] .page.out { animation: p-fade-in .15s var(--p-ease) reverse forwards; }
+  html[data-accent=penta] .verse.v-in, html[data-accent=penta] .v-in { animation: p-fade-in .3s; }
+  html[data-accent=penta] .chgrid .chcard, html[data-accent=penta] .song-row { animation: p-slide-up .3s ease-out both; }
+  html[data-accent=penta] .txrow { animation: p-fade-in .3s both; }
+  html[data-accent=penta] .sheet-scrim.on .sheet { transition: transform .3s var(--p-ease); }
+  html[data-accent=penta] .toast { transition: opacity .15s var(--p-ease), transform .3s ease-out; }
+}
+
+/* ================= bars ================= */
+html[data-accent=penta] .hdr { background: var(--home); color: var(--t1); box-shadow: inset 0 -1px 0 var(--line); }
+html[data-accent=penta] .rd-head, html[data-accent=penta] #reader .hdr { background: var(--text-bg); }
+html[data-accent=penta] .hdr-title, html[data-accent=penta] .home-hdr .hdr-title { font: 600 17px/1.2 var(--ui); letter-spacing: 0; color: var(--t1); }
+html[data-accent=penta] .t2a { font: 400 12px/1.3 var(--ui); color: var(--t2); opacity: 1; }
+html[data-accent=penta] .t2b { font: 600 15px/1.3 var(--ui); color: var(--t1); }
+html[data-accent=penta] .hdr.big .t2b { font: 600 17px/1.3 var(--ui); }
+html[data-accent=penta] .hdr .t2a:only-child { font: 600 17px/1.3 var(--ui); color: var(--t1); }
+html[data-accent=penta] .hdr-btn, html[data-accent=penta] .hdr-logo { color: var(--t2); border-radius: 6px; }
+html[data-accent=penta] .hdr-btn:hover, html[data-accent=penta] .hdr-logo:hover { background: var(--p-ring); color: var(--t1); }
+html[data-accent=penta] .hdr-btn img, html[data-accent=penta] .hdr-logo img, html[data-accent=penta] .rail-logo img { filter: saturate(0) brightness(.5); }
+html[data-accent=penta] body.night .hdr-btn img, html[data-accent=penta] body.night .hdr-logo img, html[data-accent=penta] body.night .rail-logo img { filter: saturate(0) brightness(1.35); }
+html[data-accent=penta] .hdr-dd { background: var(--p-ring); border: 0; color: var(--t1); font: 500 14px var(--ui); border-radius: 100px; }
+html[data-accent=penta] .rd-prog { height: 2px; background: var(--p-ring); }
+html[data-accent=penta] .rd-prog .p1 { background: var(--progress); }
+html[data-accent=penta] .rd-prog .p2 { background: color-mix(in oklab, var(--progress) 55%, transparent); }
+html[data-accent=penta] .strip { height: 20px; line-height: 20px; background: var(--home); color: var(--strip); font: 400 11px var(--ui); letter-spacing: .5px; border-bottom: 1px solid var(--line); opacity: 1; }
+html[data-accent=penta].desk .strip { height: auto; min-height: 24px; line-height: 1.35; padding: 4px 10px; background: transparent; color: var(--strip); }
+
+/* tab bar (phone) and rail (desktop) */
+html[data-accent=penta] #rail { background: var(--home); box-shadow: inset 0 1px 0 var(--line); }
+html[data-accent=penta] #rail .tab, html[data-accent=penta].desk #rail .tab { color: var(--tab-ico); background: transparent; border: 0; border-radius: 6px; font-weight: 500; }
+html[data-accent=penta] #rail .tab:hover { background: var(--p-ring); filter: none; }
+html[data-accent=penta] #rail .tab.on { background: transparent; color: var(--tab-on); }
+html[data-accent=penta] #rail .tab.on::before { display: none; }
+html[data-accent=penta].desk #rail { box-shadow: 1px 0 0 var(--line); }
+html[data-accent=penta].desk #rail .tab.on { background: var(--p-ring); color: var(--t1); }
+html[data-accent=penta].desk .rail-side { color: var(--tab-ico); } html[data-accent=penta].desk .rail-side:hover { background: var(--p-ring); }
+html[data-accent=penta] .tab-l { font-weight: 500; }
+
+/* sub tabs: a segmented control with a white thumb */
+html[data-accent=penta] .subtabs { height: auto; margin: 10px 12px 2px; padding: 3px; gap: 2px; border-radius: 8px; background: var(--p-ring2); box-shadow: none; position: relative; top: 0; }
+html[data-accent=penta] body.night .subtabs { background: var(--p-ring); }
+html[data-accent=penta] .st { height: 30px; border: 0; border-bottom: 0; border-radius: 6px; font: 500 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--t2); opacity: 1; }
+html[data-accent=penta] .st:hover { color: var(--t1); }
+html[data-accent=penta] .st.on { color: var(--t1); border-bottom: 0; background: transparent; box-shadow: none; }
+html[data-accent=penta] .subtabs.has-pill > .pill { border-radius: 6px; background: var(--card); box-shadow: var(--p-card-sh); }
+html[data-accent=penta] body.night .subtabs.has-pill > .pill { background: rgba(255,255,255,.12); box-shadow: none; }
+html[data-accent=penta] .subtabs:not(.has-pill) .st.on { background: var(--card); box-shadow: var(--p-card-sh); }
+html[data-accent=penta] .btabs { margin: 8px 12px 0; padding: 3px; border-radius: 8px; background: var(--p-ring2); box-shadow: none; gap: 2px; }
+html[data-accent=penta] .btab { padding: 5px 12px; border: 0; border-bottom: 0; border-radius: 6px; font: 500 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--t2); opacity: 1; }
+html[data-accent=penta] .btab.on { background: var(--card); color: var(--t1); box-shadow: var(--p-card-sh); border-bottom: 0; }
+html[data-accent=penta] body.night .btab.on { background: rgba(255,255,255,.12); box-shadow: none; }
+
+/* breadcrumb, language chips, filters */
+html[data-accent=penta] .crumbs { font: 500 13px/1 var(--ui); }
+html[data-accent=penta] .cr { border-radius: 6px; } html[data-accent=penta] .cr:hover { background: var(--p-ring); }
+html[data-accent=penta] .cr.cur { color: var(--t1); font-weight: 600; }
+html[data-accent=penta] .chip2 { height: 28px; padding: 0 12px; border: 0; border-radius: 100px; background: var(--p-ring); color: var(--t1); font: 500 14px var(--ui); }
+html[data-accent=penta] .chip2:hover { background: var(--p-mid); border: 0; }
+html[data-accent=penta] .chip2.on { background: var(--accent); color: var(--p-on); }
+html[data-accent=penta] .chip2.heart .ico, html[data-accent=penta] .chip2.heart span { color: var(--t1); } html[data-accent=penta] .chip2.heart.on span { color: inherit; }
+
+/* ================= surfaces: flat page, white cards with a 1px ring ================= */
+html[data-accent=penta] :is(.bk, .canto, .song-row, .chcard, .cont-card, .ncard, .rcard, .rswitch, .s-goto, .s-ref, .vo-list, .vo-prev, .gv-out) {
+  background: var(--card); background-image: none; color: var(--t1); border: 0; border-radius: 8px; box-shadow: var(--p-card-sh); }
+html[data-accent=penta] :is(.bk, .canto, .song-row, .chcard, .cont-card, .ncard):hover { background: var(--card); box-shadow: var(--p-card-sh), inset 0 0 0 100px var(--p-ring2); border-color: transparent; }
+html[data-accent=penta] .bk { border-left: 0; height: auto; min-height: 76px; padding: 12px 16px 14px; margin: 8px 12px; display: flex; flex-direction: column; justify-content: center; }
+html[data-accent=penta] .bk::after { display: none; }
+html[data-accent=penta] .bk-author, html[data-accent=penta] .vol-author { font: 400 12px/1.4 var(--ui); color: var(--t2); opacity: 1; }
+html[data-accent=penta] .bk-title, html[data-accent=penta] .vol-title, html[data-accent=penta] .canto-title, html[data-accent=penta] .rc-title, html[data-accent=penta] .song-title, html[data-accent=penta] .dr-title { font: 600 17px/1.3 var(--ui); letter-spacing: 0; color: var(--t1); }
+html[data-accent=penta] .vol { background: transparent; box-shadow: none; padding: 8px 12px 6px; margin: 10px 0 2px; }
+html[data-accent=penta] .vol-title { font-size: 17px; margin: 0 0 8px; } html[data-accent=penta] .vol-title:hover { color: var(--accent); }
+html[data-accent=penta] .cantos { gap: 8px; }
+html[data-accent=penta] .canto { flex: 0 0 116px; height: 112px; padding: 10px 8px 12px; }
+html[data-accent=penta] .canto-title { font: 600 15px/1.25 var(--ui); min-width: 0; overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
+html[data-accent=penta].desk .canto { padding: 8px 6px 10px; } html[data-accent=penta].desk .canto-title { font-size: 13px; }
+html[data-accent=penta] .canto-sub { font: 400 11px/1.3 var(--ui); color: var(--t2); opacity: 1; }
+html[data-accent=penta] .canto-mark, html[data-accent=penta] .bk-mark { color: var(--accent); font: 600 11px var(--ui); }
+html[data-accent=penta] .song-row { border-radius: 8px; padding: 12px 14px; text-align: left; }
+html[data-accent=penta] .chcard { min-height: 72px; } html[data-accent=penta] .chcard.cur { box-shadow: var(--p-card-sh), inset 0 0 0 1.5px var(--accent); }
+html[data-accent=penta] .cont-card { padding: 12px 14px; }
+html[data-accent=penta] .cc-k { font: 600 12px var(--ui); letter-spacing: .3px; text-transform: none; color: var(--accent); }
+html[data-accent=penta] .cc-ref { font: 600 16px var(--ui); } html[data-accent=penta] .cc-title { font: 400 14px var(--ui); color: var(--t2); opacity: 1; }
+html[data-accent=penta] .cc-prev { color: var(--t2); opacity: 1; }
+html[data-accent=penta] .cc-bar, html[data-accent=penta] .rc-bar { background: var(--p-ring); height: 4px; border-radius: 100px; } html[data-accent=penta] .cc-bar i, html[data-accent=penta] .rc-bar i { background: var(--accent); border-radius: 100px; }
+html[data-accent=penta] .cc-pct, html[data-accent=penta] .rc-pct { font: 500 12px var(--ui); color: var(--t2); }
+html[data-accent=penta] .help-row { background: var(--p-ring2); color: var(--t2); border-radius: 8px; }
+html[data-accent=penta] .folder { border-bottom: 1px solid var(--line); color: var(--t1); } html[data-accent=penta] .folder:hover { background: var(--p-ring); } html[data-accent=penta] .folder-ic { color: var(--t2); }
+html[data-accent=penta] .folder-name { font: 500 15px var(--ui); } html[data-accent=penta] .folder-n { color: var(--t2); }
+html[data-accent=penta] .txrow { border-bottom: 1px solid var(--line); } html[data-accent=penta] .txrow:hover, html[data-accent=penta] .sr-row:hover, html[data-accent=penta] .hs-row:hover { background: var(--p-ring); } html[data-accent=penta] .txrow.cur { background: var(--p-ring); }
+html[data-accent=penta] .tx-num { font: 600 12px var(--ui); color: var(--accent); }
+html[data-accent=penta] .tx-prev { font-family: var(--ui); color: var(--t1); }
+html[data-accent=penta] .ncard .nc-quote { border-radius: 4px; }
+html[data-accent=penta] .pic-sec { background: var(--card); color: var(--t1); border-radius: 8px; box-shadow: var(--p-card-sh); }
+html[data-accent=penta] .file-add { border-color: var(--p-mid); color: var(--t2); border-radius: 8px; }
+
+/* ================= buttons, switches, segmented, inputs ================= */
+html[data-accent=penta] .btn { background: var(--accent); color: var(--p-on); border: 1px solid var(--p-mid); border-radius: 6px; padding: 0 16px; min-height: 36px; font: 500 14px var(--ui); box-shadow: none; text-transform: none; letter-spacing: 0; }
+html[data-accent=penta] body.night .btn { background: var(--accent); color: var(--p-on); }
+html[data-accent=penta] .btn:hover { box-shadow: inset 0 0 0 100px rgba(0,0,0,.08); }
+html[data-accent=penta] .btn.ghost { background: transparent; color: var(--accent); border-color: var(--accent); }
+html[data-accent=penta] .dlg-btn { border-radius: 6px; color: var(--accent); font: 500 14px var(--ui); letter-spacing: 0; text-transform: none; padding: 7px 12px; }
+html[data-accent=penta] .dlg-btn:hover { background: var(--p-ring); }
+html[data-accent=penta] .s-go { border-radius: 6px; background: var(--accent); color: var(--p-on); font: 500 14px var(--ui); }
+html[data-accent=penta] .seg { padding: 3px; border-radius: 8px; background: var(--p-ring2); gap: 2px; }
+html[data-accent=penta] body.night .seg { background: var(--p-ring); }
+html[data-accent=penta] .seg-b { height: 30px; border-radius: 6px; font: 500 13px var(--ui); color: var(--t2); }
+html[data-accent=penta] .seg-b:hover { color: var(--t1); }
+html[data-accent=penta] .seg-b.on { background: var(--card); color: var(--t1); box-shadow: var(--p-card-sh); }
+html[data-accent=penta] body.night .seg-b.on { background: rgba(255,255,255,.12); box-shadow: none; }
+html[data-accent=penta] .seg.has-pill > .pill { border-radius: 6px; background: var(--card); box-shadow: var(--p-card-sh); }
+html[data-accent=penta] body.night .seg.has-pill > .pill { background: rgba(255,255,255,.12); box-shadow: none; }
+html[data-accent=penta] .seg.has-pill .seg-b.on { background: transparent; box-shadow: none; }
+html[data-accent=penta] .sw2 { width: 40px; height: 24px; border-radius: 100px; background: var(--p-mid); transition: background-color .15s var(--p-ease); }
+html[data-accent=penta] body.night .sw2 { background: rgba(255,255,255,.2); }
+html[data-accent=penta] .sw2 i { left: 2px; top: 2px; width: 20px; height: 20px; background: #fff; box-shadow: 0 0 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.2); transition: transform .15s var(--p-ease); }
+html[data-accent=penta] .sw2.on, html[data-accent=penta] body.night .sw2.on { background: var(--accent); } html[data-accent=penta] .sw2.on i { transform: translateX(16px); }
+html[data-accent=penta] input.switch, html[data-accent=penta] .sw { background: var(--p-mid); height: 22px; }
+html[data-accent=penta] body.night input.switch, html[data-accent=penta] body.night .sw { background: rgba(255,255,255,.2); }
+html[data-accent=penta] .sw.on, html[data-accent=penta] input.switch:checked, html[data-accent=penta] body.night .sw.on, html[data-accent=penta] body.night input.switch:checked { background: var(--accent); }
+html[data-accent=penta] .sw::after, html[data-accent=penta] input.switch::after { box-shadow: 0 0 2px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.2); }
+html[data-accent=penta] .rp-check input { accent-color: var(--accent); }
+html[data-accent=penta] .rp-sb, html[data-accent=penta] .num-b { border-radius: 6px; border: 1px solid var(--p-mid); background: var(--card); color: var(--t1); font-family: var(--ui); }
+html[data-accent=penta] .num-b:hover { background: var(--p-ring); }
+html[data-accent=penta] .rp-more { border-radius: 6px; background: var(--p-ring2); } html[data-accent=penta] .rp-more:hover { background: var(--p-ring); }
+html[data-accent=penta] .rp-h, html[data-accent=penta] .s-h, html[data-accent=penta] .vo-ph, html[data-accent=penta] .gv-l { font: 600 12px var(--ui); letter-spacing: .3px; text-transform: none; color: var(--t2); }
+html[data-accent=penta] :is(.dict-in, .ne-subject, .ne-text, .ne-tagin, .dlg-input, .sd-in, .nb-qbox, .s-row, .gv-in) { background: var(--p-ring2); color: var(--t1); border: 1px solid var(--p-ring); border-radius: 6px; box-shadow: none; }
+html[data-accent=penta] body.night :is(.dict-in, .ne-subject, .ne-text, .ne-tagin, .dlg-input, .sd-in, .nb-qbox, .s-row, .gv-in) { background: var(--p-ring2); color: var(--t1); border-color: var(--p-ring); }
+html[data-accent=penta] :is(.dict-in, .ne-subject, .ne-text, .ne-tagin, .dlg-input, .sd-in):focus, html[data-accent=penta] :is(.nb-qbox, .s-row):focus-within, html[data-accent=penta] .gv-in:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); outline: none; }
+html[data-accent=penta] .gv-in { font: 600 24px var(--ui); height: 52px; }
+html[data-accent=penta] .gv-out { box-shadow: none; background: var(--p-ring2); }
+html[data-accent=penta] .gv-ref { font: 600 12px var(--ui); letter-spacing: .3px; text-transform: none; color: var(--accent); }
+html[data-accent=penta] .nb-tools, html[data-accent=penta] .s-box { background: var(--home); }
+html[data-accent=penta] .adot { box-shadow: 0 0 0 2px var(--sheet-bg), 0 0 0 3px transparent; }
+html[data-accent=penta] .adot.on { box-shadow: 0 0 0 2px var(--sheet-bg), 0 0 0 4px var(--c); }
+html[data-accent=penta] body.night .adot.on { box-shadow: 0 0 0 2px var(--sheet-bg), 0 0 0 4px var(--cn); }
+
+/* ================= menus, sheets, dialogs, toasts ================= */
+html[data-accent=penta] .popmenu { padding: 4px 0; border-radius: 6px; background: var(--menu-bg); box-shadow: var(--shadow); font-family: var(--ui); }
+html[data-accent=penta] .popmenu.in, html[data-accent=penta] .popmenu { animation: none; }
+@media (prefers-reduced-motion: no-preference) { html[data-accent=penta] .popmenu { animation: p-fade-in .15s var(--p-ease); } }
+html[data-accent=penta] .pm-item { min-height: 32px; margin: 0 4px; padding: 0 8px; gap: 10px; border-radius: 4px; font: 400 14px/20px var(--ui); }
+html[data-accent=penta] .pm-item:hover { background: var(--p-ring); }
+@media (pointer: coarse) { html[data-accent=penta] .pm-item { min-height: 40px; } }
+html[data-accent=penta] .pm-ico { width: 20px; height: 20px; color: var(--t2); } html[data-accent=penta] .pm-png { width: 20px; height: 20px; }
+html[data-accent=penta] .pm-arrow { opacity: .6; } html[data-accent=penta] .pm-head { font: 400 12px var(--ui); opacity: .7; padding: 6px 12px 4px; }
+html[data-accent=penta] .pm-div { margin: 4px 0; background: var(--line); } html[data-accent=penta] .pm-back { border-bottom-color: var(--line); font-weight: 600; }
+html[data-accent=penta] .pm-check { border-color: var(--accent); }
+html[data-accent=penta] .sheet-scrim.on { background: var(--p-scrim); }
+html[data-accent=penta] .sheet { background: var(--sheet-bg); border-radius: 12px 12px 0 0; box-shadow: var(--shadow); font-family: var(--ui); }
+html[data-accent=penta].desk .sheet { border-radius: 6px; }
+html[data-accent=penta] .sheet-grip { background: var(--grip); }
+html[data-accent=penta] .sheet-title { font: 600 15px var(--ui); color: var(--t1); }
+html[data-accent=penta] .dlg-scrim { background: var(--p-scrim); }
+html[data-accent=penta] .dlg { border-radius: 6px; background: var(--dlg-bg); color: var(--t1); box-shadow: var(--shadow); font-family: var(--ui); }
+@media (prefers-reduced-motion: no-preference) { html[data-accent=penta] .dlg { animation: p-slide-up .3s ease-out; } html[data-accent=penta] .dlg-scrim { animation: p-fade-in .3s; } }
+html[data-accent=penta] .dlg-title { font: 600 16px var(--ui); color: var(--t1); }
+html[data-accent=penta] .toast { background: rgba(0,0,0,.9); color: #fff; border-radius: 6px; font: 400 14px var(--ui); padding: 8px 14px; }
+html[data-accent=penta] body.night .toast { background: rgba(200,201,202,.92); color: #222; }
+html[data-accent=penta] .selbar { background: #2e2e2e; border-radius: 6px; box-shadow: var(--shadow); }
+html[data-accent=penta] body.night .selbar { background: #3d4046; }
+html[data-accent=penta].desk #deskModal { background: var(--p-scrim); }
+html[data-accent=penta].desk .dm-win { border-radius: 6px; background: var(--sheet-bg); box-shadow: var(--shadow); }
+html[data-accent=penta].desk .dm-nav { background: var(--p-ring2); border-right-color: var(--line); }
+html[data-accent=penta].desk .dm-nav-b { border-radius: 4px; font: 400 14px var(--ui); } html[data-accent=penta].desk .dm-nav-b:hover { background: var(--p-ring); } html[data-accent=penta].desk .dm-nav-b.on { background: var(--p-ring); color: var(--t1); }
+html[data-accent=penta].desk .sheet { width: min(560px, calc(100vw - 80px)); }
+
+/* settings list */
+html[data-accent=penta] .pref { border-bottom: 1px solid var(--line); color: var(--t1); } html[data-accent=penta] .pref:hover { background: var(--p-ring2); }
+html[data-accent=penta] .pref-cat { font: 600 13px var(--ui); letter-spacing: 0; text-transform: none; color: var(--t2); padding-top: 18px; }
+html[data-accent=penta] .pref-t { font: 400 14px/20px var(--ui); } html[data-accent=penta] .pref-s { opacity: 1; color: var(--t2); font-size: 12px; }
+html[data-accent=penta] .pref-v { color: var(--accent); font-weight: 500; }
+
+/* now-reading bar */
+html[data-accent=penta] #nowbar.on { background: var(--card); color: var(--t1); border-radius: 8px; box-shadow: var(--shadow); }
+html[data-accent=penta] .nb-cover { border-radius: 6px; background: var(--p-ring); color: var(--t1); }
+html[data-accent=penta] .nb-b { color: var(--t2); } html[data-accent=penta] .nb-b:active, html[data-accent=penta] .nb-b:hover { background: var(--p-ring); }
+html[data-accent=penta] .nb-ref, html[data-accent=penta] .nb-prev { color: var(--t1); } html[data-accent=penta] .nb-prev { color: var(--t2); opacity: 1; }
+
+/* ================= reading page ================= */
+html[data-accent=penta] .vhead { border-bottom-color: var(--line); }
+html[data-accent=penta] .vlabel { font: 600 12px var(--ui); letter-spacing: .4px; color: var(--t2); }
+html[data-accent=penta] .vt { width: 32px; height: 32px; border-radius: 6px; color: var(--t2); }
+html[data-accent=penta] .vt:hover { background: var(--p-ring); color: var(--t1); } html[data-accent=penta] .vt.on { color: var(--accent); }
+html[data-accent=penta] .vt[data-n]::after { background: var(--accent); color: var(--p-on); }
+html[data-accent=penta] .wbwTable td { border-bottom-color: var(--line); }
+html[data-accent=penta] .wbw-fold { color: var(--t2); }
+html[data-accent=penta] .rd-edge:hover { background: var(--p-ring); }
+html[data-accent=penta] .srch_res, html[data-accent=penta] .srch_cur { color: var(--srch-t); }
+
+/* ================= scrollbars (desktop): 12px, round thumb, 3px gutter ================= */
+html[data-accent=penta].desk * { scrollbar-width: auto; scrollbar-color: auto; }
+html[data-accent=penta] ::-webkit-scrollbar-thumb { background: rgba(0,0,0,.1); background-clip: padding-box; border: 3px solid transparent; border-radius: 9999px; }
+html[data-accent=penta] body.night ::-webkit-scrollbar-thumb { background: rgba(255,255,255,.12); background-clip: padding-box; border: 3px solid transparent; }
+html[data-accent=penta].desk ::-webkit-scrollbar { width: 12px; height: 12px; } html[data-accent=penta] ::-webkit-scrollbar-track, html[data-accent=penta] ::-webkit-scrollbar-corner { background: transparent; }
+html[data-accent=penta] .rd-scroll { scrollbar-color: auto; }

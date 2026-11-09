@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<base href="/">
+<meta name="gb-paths" content="1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#22423a">
+<title>Vaishnava Texts</title>
+<meta name="description" content="Scripture reader: verses, word-by-word, translations and purports, with notes and search.">
+<meta property="og:title" content="Vaishnava Texts">
+<meta property="og:description" content="“Books are the basis of our Movement.” (Śrīla Prabhupāda · Letter to Tuṣṭa Kṛṣṇa, Bombay, 9 January 1976)">
+<meta property="og:site_name" content="Vaishnava Texts">
+
+<link rel="icon" type="image/svg+xml" href="img/app-icon.svg">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/own-art.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/v2.css">
+<link rel="stylesheet" href="css/desk.css">
+<link rel="stylesheet" href="css/penta.css">
+<link rel="stylesheet" href="css/penta-size.css">
+<link rel="stylesheet" href="css/shelf.css">
+<style>#boot .boot-q{max-width:min(30em,84vw);text-align:center;display:grid;gap:6px;margin-top:2px}#boot .boot-qt{font:italic 19px/1.45 "Gaura Times","Noto Serif",Georgia,serif;color:var(--book-title,#1f3c35)}#boot .boot-qs{font:13px var(--ui,system-ui,sans-serif);opacity:.62;letter-spacing:.02em}.about .about-q{font-style:italic;margin:.2em 0 .1em}.about .about-qs{opacity:.65;font-size:.88em;margin-top:0}</style>
+</head>
+<body>
+<div id="app">
+  <nav id="rail" aria-label="Tabs"></nav>
+  <section id="left"></section>
+  <section id="reader"></section>
+</div>
+<div id="overlays"></div>
+<div id="dropzone"><div>Drop .db files to add them to your library</div></div>
+<input type="file" id="fileAdd" accept=".db,.gitabase,.sqlite,.sqlite3,.gdb" multiple hidden>
+<input type="file" id="fileRestore" accept=".json,application/json" hidden>
+<div id="boot"><img src="img/app-icon.svg" alt=""><div class="boot-q"><div class="boot-qt">“Books are the basis of our Movement.”</div><div class="boot-qs">Śrīla Prabhupāda · Letter to Tuṣṭa Kṛṣṇa, Bombay, 9 January 1976</div></div><div class="boot-msg">Loading…</div></div>
+<script>window.GB = { APP_NAME: "Vaishnava Texts", BRAND: {"quote": "Books are the basis of our Movement.", "source": "Śrīla Prabhupāda · Letter to Tuṣṭa Kṛṣṇa, Bombay, 9 January 1976"} };   // app name: change it here, in <title> and in manifest.webmanifest</script>
+<script src="js/sqlite-src.js"></script>
+<script src="js/db.js"></script>
+<script src="js/util.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/store.js"></script>
+<script src="js/library.js"></script>
+<script src="js/render.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/ui-home.js"></script>
+<script src="js/ui-book.js"></script>
+<script src="js/ui-reader.js"></script>
+<script src="js/ui-extra.js"></script>
+<script src="js/ui-v2.js"></script>
+<script src="js/ui-desk.js"></script>
+<script src="js/ui-look.js"></script>
+<script src="js/ui-search.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

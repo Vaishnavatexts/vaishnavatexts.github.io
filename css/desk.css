@@ -1,0 +1,170 @@
+/* Vaishnava Texts: desktop look (html.desk = wide window or Settings > Screen layout: Desktop).
+   Same panels and tabs as on phones, dressed like a desktop app: the brand colour stays in the tab rail,
+   toolbars are light and slim, the sidebar is resizable, lists are dense with hover states, no swipe carousels. */
+.rail-logo { display: none; }
+.hdr-backic { display: none; }
+#sideGrip, #deskModal { display: none; }
+
+html.desk {
+  --tb: 48px;
+  --ui-s: 13px;
+}
+html.desk #app { grid-template-columns: 60px var(--sideW, 360px) minmax(0, 1fr); }
+html.desk * { scrollbar-width: thin; scrollbar-color: color-mix(in oklab, var(--t2) 32%, transparent) transparent; }
+
+/* ---------- tab rail: brand column with the logo on top ---------- */
+html.desk #rail { padding: 6px 0 0; gap: 2px; align-items: center; }
+html.desk .rail-logo { display: grid; place-items: center; width: 40px; height: 40px; margin: 0 0 12px; }
+html.desk .rail-logo img { width: 30px; height: 30px; }
+html.desk #rail .tab { width: 50px; height: 50px; margin: 0; padding: 0; border-radius: 10px; flex-direction: column; gap: 4px; background: transparent; color: var(--tab-ico); }
+html.desk #rail .tab:hover { background: rgba(255,255,255,.08); }
+html.desk #rail .tab.on { margin: 0; border-radius: 10px; background: rgba(255,255,255,.14); color: #fff; }
+html.desk #rail .tab.on::before { left: -5px; top: 13px; bottom: 13px; width: 3px; }
+html.desk #rail .tab-ico { width: 21px; height: 21px; }
+html.desk #rail .tab-l { font: 500 10.5px/1 var(--ui); letter-spacing: .1px; }
+
+/* ---------- toolbars: slim and light, part of the surface below them ---------- */
+html.desk .hdr { height: var(--tb); padding: 0 8px 0 14px; gap: 6px; background: var(--home); color: var(--t1); box-shadow: inset 0 -1px 0 var(--line); }
+html.desk #reader .hdr { background: var(--text-bg); }
+html.desk .home-hdr .hdr-logo, html.desk .rd-head > .hdr-logo { display: none; }
+html.desk .hdr-logo { width: 30px; height: 30px; border-radius: 7px; margin-left: -6px; color: var(--t2); }
+html.desk .hdr-logo img { display: none; }
+html.desk .hdr-logo .hdr-backic { display: inline-flex; width: 20px; height: 20px; }
+html.desk .hdr-logo:hover { background: var(--hover); color: var(--t1); }
+html.desk .hdr-title, html.desk .home-hdr .hdr-title { font: 600 15px/1.2 var(--ui); color: var(--t1); letter-spacing: 0; }
+html.desk .t2a { font: 12px/1.25 var(--ui); color: var(--t2); opacity: 1; }
+html.desk .t2b { font: 600 14.5px/1.25 var(--ui); color: var(--t1); }
+html.desk .hdr.big .t2b { font-size: 15px; font-weight: 600; }
+html.desk .rd-titles .tri { color: var(--t2); }
+html.desk .hdr-btn { width: 32px; height: 32px; border-radius: 7px; color: var(--t2); }
+html.desk .hdr-btn:hover { background: var(--hover); color: var(--t1); }
+html.desk .hdr-btn .ico { width: 19px; height: 19px; }
+html.desk .hdr-btn img { width: 22px; height: 22px; filter: brightness(.35) saturate(0); }
+html.desk body.night .hdr-btn img { filter: brightness(1.4) saturate(0); }
+html.desk .hdr-aa .aa { color: var(--t2); font-size: 17px; }
+html.desk .hdr-dd { background: var(--wash); border-color: transparent; color: var(--t1); height: 30px; }
+html.desk .hdr-dd .dd-arrow { filter: none; opacity: .6; }
+html.desk .rd-prog { height: 2px; }
+html.desk .pagenum { color: var(--t2); }
+
+/* the mantra: one quiet line instead of a banner */
+html.desk .strip { height: 24px; line-height: 24px; font-size: 11px; letter-spacing: .6px; background: transparent; color: color-mix(in oklab, var(--gold) 85%, var(--t2)); border-bottom: 1px solid var(--line); }
+
+/* ---------- sidebar ---------- */
+html.desk #left { box-shadow: 1px 0 0 var(--line); }
+html.desk #sideGrip { display: block; position: absolute; top: 0; bottom: 0; left: calc(60px + var(--sideW, 360px) - 3px); width: 7px; cursor: col-resize; z-index: 6; }
+html.desk #sideGrip::after { content: ''; position: absolute; left: 3px; top: 0; bottom: 0; width: 1px; background: transparent; transition: background .15s; }
+html.desk #sideGrip:hover::after, html.side-drag #sideGrip::after { background: var(--accent); width: 2px; left: 2px; }
+html.side-drag, html.side-drag * { cursor: col-resize !important; user-select: none !important; }
+html.desk .pc { font-size: 14px; }
+
+/* sub tabs (Books · Reading · My books) become a segmented control */
+html.desk .subtabs { position: static; height: auto; margin: 10px 12px 2px; padding: 3px; gap: 2px; border-radius: 9px; background: color-mix(in oklab, var(--t1) 7%, transparent); box-shadow: none; }
+html.desk .st { height: 28px; border: 0; border-radius: 7px; font: 500 13px var(--ui); text-transform: none; letter-spacing: 0; color: var(--t2); opacity: 1; }
+html.desk .st:hover { color: var(--t1); }
+html.desk .st.on { background: var(--card); color: var(--t1); box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 0 0 .5px rgba(0,0,0,.06); }
+html.desk body.night .st.on { background: color-mix(in oklab, var(--t1) 14%, transparent); }
+html.desk .btabs { margin: 8px 12px 0; padding: 3px; border-radius: 9px; background: color-mix(in oklab, var(--t1) 7%, transparent); box-shadow: none; border: 0; }
+html.desk .btab { padding: 5px 10px; border: 0; border-radius: 7px; font: 500 13px var(--ui); opacity: 1; color: var(--t2); }
+html.desk .btab.on { background: var(--card); color: var(--t1); box-shadow: 0 1px 2px rgba(0,0,0,.12); }
+
+/* chips: small rounded rectangles */
+html.desk .lang-chips { padding: 8px 12px 2px; gap: 6px; }
+html.desk .chip2, html.desk .fchip { height: 26px; padding: 0 10px; border-radius: 6px; font-size: 12.5px; }
+html.desk .filters { gap: 6px; }
+
+/* continue card: a light card, not a phone hero */
+html.desk .cont-card { width: calc(100% - 24px); margin: 10px 12px 2px; padding: 10px 12px; border-radius: 10px; background: var(--card); color: var(--t1); border: 1px solid var(--card-b); box-shadow: none; }
+html.desk .cont-card:hover { border-color: color-mix(in oklab, var(--accent) 45%, var(--card-b)); }
+html.desk .cc-k { font: 600 11px var(--ui); letter-spacing: .6px; color: var(--accent); }
+html.desk .cc-ref { font: 600 15px var(--ui); }
+html.desk .cc-title { font-size: 14px; }
+html.desk .cc-prev { font-size: 13px; color: var(--t2); opacity: 1; -webkit-line-clamp: 1; }
+html.desk .cc-bar { height: 3px; background: color-mix(in oklab, var(--t1) 10%, transparent); margin-top: 4px; }
+html.desk .cc-pct { font: 500 12px var(--ui); color: var(--t2); margin-top: 4px; }
+
+/* books: no swipe rows; cantos wrap in a grid of small covers */
+html.desk .bk { height: auto; min-height: 66px; margin: 8px 12px; padding: 10px 14px 12px; border-radius: 8px; }
+html.desk .bk-title { font-size: 18px; }
+html.desk .bk::after { bottom: 6px; }
+html.desk .vol { margin: 8px 12px; padding: 10px 10px 10px; border-radius: 8px; }
+html.desk .vol-title { font-size: 18px; margin: 0 0 8px; }
+html.desk .vol-title:hover { color: var(--accent); }
+html.desk .cantos { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; overflow: visible; padding: 0; scroll-snap-type: none; }
+html.desk .canto { flex: none; width: auto; height: auto; aspect-ratio: 4 / 5; min-width: 0; padding: 6px 6px 8px; border-radius: 6px; transition: transform .12s ease, box-shadow .12s ease; }
+html.desk .canto:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.12); filter: none; }
+html.desk .canto-sub { font-size: 10px; }
+html.desk .canto-title { font-size: 14px; line-height: 1.12; }
+html.desk .canto-mark { font-size: 9px; }
+
+/* lists: dense rows with hover */
+html.desk .song-row { margin: 6px 12px; padding: 9px 12px; border-radius: 8px; }
+html.desk .chgrid { gap: 8px; padding: 8px 12px; }
+html.desk .chcard { min-height: 0; padding: 8px 11px 10px; border-radius: 8px; }
+html.desk .chcard:hover { border-color: color-mix(in oklab, var(--accent) 45%, var(--card-b)); background: var(--hover); }
+html.desk .txrow { padding: 7px 14px 8px; }
+html.desk .tx-num { font-size: 13px; }
+html.desk .tx-prev { font-size: 13.5px; line-height: 1.4; }
+html.desk .ncard { margin: 6px 12px; border-radius: 8px; }
+html.desk .folder { margin: 4px 12px; border-radius: 8px; padding: 8px 10px; }
+html.desk .btn { padding: 7px 14px; border-radius: 8px; font-size: 13.5px; }
+html.desk .s-in, html.desk .dict-in { height: 34px; border-radius: 8px; font-size: 14px; }
+
+/* reader */
+html.desk .rd-edge { opacity: 0; transition: opacity .15s; }
+html.desk .rd-stage:hover .rd-edge { opacity: .55; }
+html.desk .rd-edge:hover { opacity: 1 !important; }
+html.desk .verse { padding: 18px 40px 80px; max-width: 820px; }
+html.desk .vt { width: 32px; height: 32px; border-radius: 7px; }
+html.desk .rd-drawer { box-shadow: var(--shadow); }
+
+/* popups: desktop menus are tighter */
+html.desk .popmenu { border-radius: 9px; padding: 4px; box-shadow: 0 10px 30px rgba(0,0,0,.18), 0 0 0 .5px rgba(0,0,0,.1); }
+html.desk .popmenu > * { border-radius: 6px; }
+
+/* ---------- Settings / Verse order as a window ---------- */
+html.desk #deskModal { display: grid; place-items: center; position: fixed; inset: 0; z-index: 60; background: rgba(12,20,18,.38); opacity: 0; pointer-events: none; transition: opacity .16s ease; }
+html.desk #deskModal.on { opacity: 1; pointer-events: auto; }
+html.desk .dm-win { position: relative; width: min(880px, calc(100vw - 80px)); height: min(680px, calc(100vh - 80px)); border-radius: 14px; overflow: hidden;
+  background: var(--home); box-shadow: 0 30px 80px rgba(0,0,0,.35), 0 0 0 .5px rgba(0,0,0,.2); transform: scale(.98); transition: transform .16s ease; }
+html.desk #deskModal.on .dm-win { transform: none; }
+html.desk .dm-page { position: absolute; inset: 0; }
+html.desk .dm-page .hdr { background: var(--home); padding-left: 18px; }
+html.desk .dm-page .hdr-logo { margin-left: -8px; }
+html.desk .dm-x { margin-left: 4px; }
+html.desk .dm-split { flex: 1; min-height: 0; display: grid; grid-template-columns: 190px 1fr; }
+html.desk .dm-split > .pc { overflow-y: auto; padding: 6px 18px 30px; }
+html.desk .dm-nav { padding: 10px 8px; border-right: 1px solid var(--line); display: flex; flex-direction: column; gap: 1px; overflow-y: auto; background: color-mix(in oklab, var(--t1) 3%, var(--home)); }
+html.desk .dm-nav-b { text-align: left; padding: 7px 10px; border-radius: 7px; font: 500 13.5px var(--ui); color: var(--t2); }
+html.desk .dm-nav-b:hover { background: var(--hover); color: var(--t1); }
+html.desk .dm-nav-b.on { background: var(--wash); color: var(--accent); }
+html.desk .settingspage .pref-cat { padding: 18px 4px 6px; font-size: 16px; }
+html.desk .settingspage .pref { padding: 9px 4px; }
+html.desk .settingspage .pref-t { font-size: 14.5px; }
+html.desk .settingspage .pref-s { font-size: 12.5px; }
+/* polish */
+html.desk .dm-page .t2a { font: 600 15px/1.2 var(--ui); color: var(--t1); }
+html.desk .dm-page.settingspage .hdr-logo { display: none; }
+html.desk .dm-x svg { width: 18px; height: 18px; }
+html.desk .canto { padding: 6px 4px 8px; }
+html.desk .canto-title { font-size: 12px; letter-spacing: 0; overflow-wrap: normal; hyphens: auto; -webkit-hyphens: auto; }
+html.desk .strip { height: auto; min-height: 24px; line-height: 1.35; padding: 4px 10px; white-space: normal; text-wrap: balance; overflow: visible; text-overflow: clip; }
+html.desk .strip { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0; }
+html.desk .strip > span { white-space: nowrap; }
+html.desk #left:not(.wide-side) .strip { flex-direction: column; align-items: center; }
+html.desk .strip-dot { display: none; }
+
+/* ---------- sheets: centred dialogs on desktop; the Aa panel is a popover under its button ---------- */
+html.desk .sheet-scrim { align-items: center; padding: 40px; }
+html.desk .sheet { width: min(560px, calc(100vw - 80px)); max-height: min(720px, calc(100vh - 80px)); border-radius: 14px; transform: scale(.97); opacity: 0;
+  transition: transform .16s ease, opacity .16s ease; box-shadow: 0 30px 80px rgba(0,0,0,.3), 0 0 0 .5px rgba(0,0,0,.18); }
+html.desk .sheet-scrim.on .sheet { transform: none; opacity: 1; }
+html.desk .sheet-grip { display: none; }
+html.desk .sheet-title { padding: 16px 20px 10px; font-size: 15px; font-weight: 600; }
+html.desk .sheet-scrim:has(.rpsheet) { align-items: flex-start; justify-content: flex-end; padding: 54px 14px 0; }
+html.desk .sheet-scrim.on:has(.rpsheet) { background: transparent; }
+html.desk .sheet.rpsheet { width: 380px; max-height: calc(100vh - 70px); transform-origin: top right; transform: translateY(-6px) scale(.98); }
+html.desk .sheet-scrim.on .sheet.rpsheet { transform: none; }
+html.desk .sheet.rpsheet .sheet-title { padding: 14px 18px 6px; }
+html.desk .sheet.gvsheet { width: 440px; }
+html.desk #deskModal { z-index: 45; }   /* below #overlays (50): pickers, dialogs and toasts opened from Settings show on top */

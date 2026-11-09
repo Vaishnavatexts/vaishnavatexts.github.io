@@ -1,0 +1,4 @@
+Gaura Times (GauraTimes.ttf, GauraTimes-Italic.ttf) is the verse and purport font of the Gitabase texts, used with permission.
+Reader Display (ReaderDisplay-Bold.ttf) is Noto Serif Display Bold, Copyright 2016 Google Inc., SIL Open Font License 1.1, subset and renamed.
+Roboto (Apache 2.0), Tiro Devanagari Hindi / Sanskrit (OFL), Noto Serif Devanagari (OFL).
+Inter (css/penta.css, fonts/Inter-*.woff2) is Copyright The Inter Project Authors, SIL Open Font License 1.1, subset to Latin with the transliteration letters.
