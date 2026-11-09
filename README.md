@@ -5,7 +5,7 @@
 
 Live: https://vaishnavatexts.github.io/
 
-This site is the same reader as the [base app](https://github.com/dasadasanudas/gitabase-reader-web), under its own name.
+This site is the same reader as the, under its own name.
 **Do not edit the app here.** Every change pushed to the base repo (branch `main`) is copied here automatically
 within about 20 minutes by `.github/workflows/mirror.yml`; the books are read straight from the base site.
 
