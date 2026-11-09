@@ -1,0 +1,42 @@
+name: Mirror the reader
+# Copies the app from dasadasanudas/gitabase-reader-web (branch main) with this site's name and quote.
+# Runs every 20 minutes and does nothing unless the base repo or its book catalogue changed.
+# Run it by hand: Actions > Mirror the reader > Run workflow.
+on:
+  schedule:
+    - cron: '7,27,47 * * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['brand.json', 'mirror/**', '.github/workflows/mirror.yml']
+permissions:
+  contents: write
+concurrency:
+  group: mirror
+  cancel-in-progress: false
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: What changed on the base site?
+        id: base
+        run: |
+          sha=$(git ls-remote https://github.com/dasadasanudas/gitabase-reader-web.git refs/heads/main | cut -f1)
+          cat=$(curl -fsSL https://dasadasanudas.github.io/gitabase-reader-web/library/catalog.json | sha256sum | cut -c1-16)
+          echo "key=${sha}-${cat}" >> "$GITHUB_OUTPUT"
+          echo "old=$(cat .mirror-key 2>/dev/null || true)" >> "$GITHUB_OUTPUT"
+      - name: Build and publish
+        if: steps.base.outputs.key != steps.base.outputs.old || github.event_name != 'schedule'
+        env:
+          GIT_LFS_SKIP_SMUDGE: '1'
+        run: |
+          git clone --depth 1 --branch main https://github.com/dasadasanudas/gitabase-reader-web.git /tmp/base
+          python3 mirror/build.py /tmp/base "$GITHUB_WORKSPACE"
+          echo "${{ steps.base.outputs.key }}" > .mirror-key
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "Mirror base $(cut -c1-7 .mirror-key)"
+          git push
